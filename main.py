@@ -279,19 +279,6 @@ Restroom.addObject(restroomToothpaste)
 Restroom.exits["west"] = "Cellar"
 
 
-
-'''
-cellarWindow = Object("window",[Action("look","The window has [bars], so you are unable to look out. The only thing you see are mountains in the distance.")])
-cellarWindow.actions["look"].shows = "bars"
-Cellar.addObject(cellarWindow)
-cellarBars = Object("bars",[Action("look","The bars are made of steel and look very sturdy."),Action("push","Who do you think you are, Super man?")])
-cellarBars.visible = False
-Cellar.addObject(cellarBars)
-Cellar.exits["east"] = "Toilet"
-'''
-
-#Cellar.objects["window"]
-
 Game = Game()
 Game.inventory = Inventory()
 
