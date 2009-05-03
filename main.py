@@ -2,6 +2,19 @@
 import cmd
 import string, sys
 
+class Person():
+	def __init__(self,name,topics={}):
+		self.name = name
+		self.topics = topics
+		#etc
+
+class Topic():
+	def __init__(self,name,reply):
+		self.name = name
+		self.reply = reply
+		self.status = ""
+		#etc
+
 class Action():
 	def __init__(self,type,response=None):
 		self.object = None
