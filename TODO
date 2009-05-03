@@ -1,0 +1,12 @@
+FIRST:
+
+- Switches, like Game.setConstant("foo",True) and Game.getConstant("bar",defaultValue). Need to come up with a good way to act upon states of switches too. (Like, if "foo" is True, print "bar" instead of "baz".)
+- Really removing items from inventory when they have been used
+- Come up with a way to make objects have multiple states and different replies. The sink for instance (with or without toothpaste)
+- Break up actions into different Classes, but still inherit Action. How does that work in .py?`
+- Fix up the People and Topic classes. A lot. Need to be able to control visibility of topics
+- Implement a "Give" action. Neat huh? 
+
+THEN:
+
+- Write one hell of a game.
