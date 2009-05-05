@@ -2,18 +2,21 @@
 import cmd
 import string, sys
 
-class Person():
-	def __init__(self,name,topics={}):
-		self.name = name
-		self.topics = topics
-		#etc
-
 class Topic():
 	def __init__(self,name,reply):
 		self.name = name
 		self.reply = reply
 		self.status = ""
-		#etc
+
+class Person():
+	def __init__(self,name,topics={}):
+		self.name = name
+		self.topics = {}
+		for topic in topics:
+			self.addTopic(topic)			
+
+	def addTopic(self,topicObject):
+		self.topics[topicObject.name.lower()] = topicObject
 
 class Action():
 	def __init__(self,type,response=None):
@@ -90,6 +93,7 @@ class Room():
 		self.triggers["activate"] = {}
 		self.triggers["set"] = {}
 		self.objects = {}
+		self.people = {}
 
 	def __get__(self,var):
 		if var in self.objects:
@@ -104,6 +108,11 @@ class Room():
 	def addObject(self,objectObject):
 		objectObject.room = self
 		self.objects[objectObject.name] = objectObject
+
+	def addPerson(self,personObject):
+		personObject.room = self
+		self.people[personObject.name] = personObject
+		print "Added",personObject.name,"to",self.name
 
 	def setObjectVisibility(self,objectName,visible=True):
 		if objectName in self.objects:
@@ -252,6 +261,30 @@ class Game(cmd.Cmd):
 		else: 
 			print "You can't use what you don't have"
 
+	def do_ask(self,askString):
+		askString = askString.lower()
+		askPerson = None
+		askTopic = None
+
+		if "about" in askString:
+			for person in self.currentRoom.people:
+				if askString.startswith(person.lower()):
+					askPerson = self.currentRoom.people[person]
+
+			if askPerson != None:
+
+				for topic in askPerson.topics:
+					if askString.endswith(topic.lower()):
+						askTopic = askPerson.topics[topic]
+		else:
+			print "Hm, what?"
+			return
+
+		if askPerson != None and askTopic != None:
+			print askTopic.reply
+		else:
+			"Nope."
+			
 	def do_quit(self, arg):
 		exit("Bye!")
 
@@ -291,6 +324,8 @@ restroomToothpaste.actions["use"].target = "bars"
 Restroom.addObject(restroomToothpaste)
 Restroom.exits["west"] = "Cellar"
 
+Jeff = Person("Jeff",[Topic("foo","bar!")])
+Cellar.addPerson(Jeff)
 
 Game = Game()
 Game.inventory = Inventory()
@@ -300,4 +335,4 @@ Game.addRoom(Cellar,"Cellar");
 Game.addRoom(Restroom,"Restroom");
 
 Game.start("Cellar")
-
+a
