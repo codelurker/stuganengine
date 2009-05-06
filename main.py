@@ -29,7 +29,8 @@ RestroomSink = Object("sink",[Action("look","The sink is in a sorry state. There
 RestroomSink.actions["look"].addTrigger(Trigger("showObject",["restroom","toothpaste"]))
 Restroom.addObject(RestroomSink)
 
-RestroomToliet = Object("toilet",[Action("look","No. You do not want to do that.")])
+RestroomToliet = Object("toilet",[Action("look","No. You are not sure you want to do that.")])
+#RestroomToliet.actions["look"].addTrigger(Trigger("changeObjectResponse",["restroom","toilet","look","Not being able to resist, you lift the lid of the toilet. That was a bad idea."]))
 Restroom.addObject(RestroomToliet)
 
 RestroomToothpaste = Object("toothpaste",[Action("look","You can't make out the brand of the toothpaste, but from what you see it has done to the sink you understand that it must be very strong."),Action("take","You pick up the toothpaste while making very sure not to get anything on you."),Action("use","You put some toothpaste on the bars. They melt away like butter on a sunny day!")])
@@ -37,13 +38,14 @@ RestroomToothpaste.actions["take"].addTrigger(Trigger("changeObjectResponse",["r
 RestroomToothpaste.actions["use"].target = "bars"
 RestroomToothpaste.actions["use"].addTrigger(Trigger("removeObject",["cellar","bars"]))
 RestroomToothpaste.actions["use"].addTrigger(Trigger("changeObjectResponse",["cellar","window","look","It has no bars anymore."]))
+RestroomToothpaste.actions["use"].addTrigger(Trigger("changeObjectResponse",["cellar","default","look","The cellar is bathing in light coming from the window. With no bars, the [window] on the [south] wall has become an exit. There is also a door to the [east]"]))
 RestroomToothpaste.actions["use"].addTrigger(Trigger("setRoomExit",["cellar","south","outside"]))
 Restroom.addObject(RestroomToothpaste)
 Restroom.exits["west"] = "cellar"
 
 
 Outside = Room("the Outside")
-OutsideDefault = Object("default",[Action("look","Oh my lord, you seem to be in outside. That must mean you've won! GG!")])
+OutsideDefault = Object("default",[Action("look","Oh my lord, you seem to be outside. That must mean you've won! GG!")])
 Outside.addObject(OutsideDefault)
 Outside.exits["north"] = "cellar"
 

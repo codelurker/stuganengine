@@ -15,11 +15,11 @@ class Trigger:
 					execString += "\""+argument+"\","
 				execString = execString[:-1]
 				execString += ")"
-				print "###",execString
+				#debugmsg(execString)
 				exec(execString)
 				self.triggered = True
 			else:
-				print "### FAILED TO RUN",self.type,"###"
+				exit("Trigger failed:",self.type)
 
 	def showObject(self,roomKey,objectKey):
 		self.action.object.room.game.rooms[roomKey].setObjectVisibility(objectKey,True)

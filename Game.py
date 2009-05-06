@@ -146,7 +146,3 @@ class Game(cmd.Cmd):
 
 	def do_dump(self, arg):
 		print self.inventory.items
-
-	def debugmsg(self,str):
-		if self.debug:
-			print str

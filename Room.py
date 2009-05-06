@@ -36,6 +36,7 @@ class Room():
 			self.objects[objectName].visible = visible
 
 	def enter(self):
+		print 45*"\n"
 		print "Entering",self.name
 
 	def addTrigger(self,trigger,type,object):

@@ -10,7 +10,8 @@ class Inventory():
 		self.items.pop(object.name)
 
 	def hasItem(self,object):
-		return object.name in self.items
+		print object
+		return object in self.items
 
 	def listItems(self):
 		if len(self.items) > 0:
