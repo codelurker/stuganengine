@@ -22,7 +22,7 @@ Cellar.exits["east"] = "restroom"
 
 ##ADDING SOME DUDE###
 
-Geoffrey = new Person("Geoffrey")
+Geoffrey = Person("Geoffrey")
 #anonym Topic, man kan 
 Geoffrey.addTopic(Topic("dinner","Go make your own dinner, you spoiled brat!"))
 Geoffrey.addTopic(Topic("toothpaste","Oh? You used the toothpaste to melt the window bars? How ingenious!"))
