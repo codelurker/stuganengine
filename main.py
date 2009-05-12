@@ -7,6 +7,7 @@ from Action import Action
 from Person import Person
 from Topic import Topic
 from Trigger import Trigger
+#TODO: Do the hula hula
 
 Cellar = Room("the Cellar")
 CellarDefault = Object("default",[Action("look","You stand in a dark cellar. There is a [window] on the southern wall and a door to the [east]")])
@@ -18,6 +19,15 @@ Cellar.addObject(CellarWindow)
 CellarBars = Object("bars",[Action("look","The bars are made of steel and look very sturdy."),Action("push","Who do you think you are, Superman?")])
 Cellar.addObject(CellarBars)
 Cellar.exits["east"] = "restroom"
+
+##ADDING SOME DUDE###
+
+Geoffrey = new Person("Geoffrey")
+#anonym Topic, man kan 
+Geoffrey.addTopic(Topic("dinner","Go make your own dinner, you spoiled brat!"))
+Geoffrey.addTopic(Topic("toothpaste","Oh? You used the toothpaste to melt the window bars? How ingenious!"))
+Geoffrey.addTopic(Topic("weather","Well, it's a splendid day I'd say!"))
+Outside.addPerson(Geoffrey)
 
 Restroom = Room("the Restroom")
 RestroomDefault = Object("default",[Action("look","You find yourself in a very small restroom. You notice a bad smell coming from the [toilet]. There is also a worn [sink].")])
