@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 from Game import Game
 from Inventory import Inventory
 from Room import Room 
@@ -22,12 +23,7 @@ Cellar.exits["east"] = "restroom"
 
 ##ADDING SOME DUDE###
 
-Geoffrey = Person("Geoffrey")
-#anonym Topic, man kan 
-Geoffrey.addTopic(Topic("dinner","Go make your own dinner, you spoiled brat!"))
-Geoffrey.addTopic(Topic("toothpaste","Oh? You used the toothpaste to melt the window bars? How ingenious!"))
-Geoffrey.addTopic(Topic("weather","Well, it's a splendid day I'd say!"))
-Outside.addPerson(Geoffrey)
+
 
 Restroom = Room("the Restroom")
 RestroomDefault = Object("default",[Action("look","You find yourself in a very small restroom. You notice a bad smell coming from the [toilet]. There is also a worn [sink].")])
@@ -55,9 +51,15 @@ Restroom.exits["west"] = "cellar"
 
 
 Outside = Room("the Outside")
-OutsideDefault = Object("default",[Action("look","Oh my lord, you seem to be outside. That must mean you've won! GG!")])
+OutsideDefault = Object("default",[Action("look","You enjoy the sunlight and fresh wind. There is a path to the [west]. There's also an old butler named [Geoffrey] standing here. Ask him about the [weather].")])
 Outside.addObject(OutsideDefault)
 Outside.exits["north"] = "cellar"
+
+Geoffrey = Person("Geoffrey")
+Geoffrey.addTopic(Topic("path","Yeah, that old path leads to the village."))
+Geoffrey.addTopic(Topic("toothpaste","Oh? You used the toothpaste to melt the window bars? How ingenious! Where are you going now?"))
+Geoffrey.addTopic(Topic("weather","Well, it's a splendid day I'd say! How did you get out of the cellar?"))
+Outside.addPerson(Geoffrey)
 
 
 Game = Game()
@@ -67,4 +69,11 @@ Game.addRoom(Cellar,"cellar");
 Game.addRoom(Restroom,"restroom");
 Game.addRoom(Outside,"outside");
 
-Game.start("cellar")
+## Starting Room
+StartRoom = "cellar"
+if len(sys.argv) > 1 and sys.argv[1] in Game.rooms:
+	StartRoom = sys.argv[1]
+else:
+	exit("Fatal: Not a valid room.")
+
+Game.start(StartRoom)
